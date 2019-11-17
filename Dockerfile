@@ -1,4 +1,4 @@
-FROM openjdk:11
-ADD ./target/poc-skoda.jar poc-skoda.jar
-EXPOSE 8085
-ENTRYPOINT ["java","-jar","poc-skoda.jar"]
+FROM openjdk:8-jdk-alpine
+VOLUME /tmp
+COPY ./target/pocskoda.jar pocskoda.jar
+ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/pocskoda.jar"]

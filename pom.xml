@@ -15,14 +15,6 @@
 	<name>poc-skoda</name>
 	<description>Demo project for Spring Boot</description>
 
-	<properties>
-		<docker.image.prefix>skodademo.azurecr.io</docker.image.prefix>
-		<java.version>1.8</java.version>
-		<jib-maven-plugin.version>1.7.0</jib-maven-plugin.version>
-		<username>skodademo</username>
-		<password>00XvowljAFSR5hTJXX2t8zetmOEQMy=7</password>
-	</properties>
-
 	<dependencies>
 		<dependency>
 			<groupId>io.springfox</groupId>
