@@ -16,7 +16,12 @@
 	<description>Demo project for Spring Boot</description>
 
 	<properties>
+		<docker.image.prefix>springio</docker.image.prefix>
 		<java.version>1.8</java.version>
+		<jib-maven-plugin.version>1.7.0</jib-maven-plugin.version>
+		<docker.image.prefix>skodademo.azurecr.io</docker.image.prefix>
+		<username>skodademo</username>
+		<password>00XvowljAFSR5hTJXX2t8zetmOEQMy=7</password>
 	</properties>
 
 	<dependencies>
@@ -24,6 +29,11 @@
 			<groupId>io.springfox</groupId>
 			<artifactId>springfox-swagger2</artifactId>
 			<version>2.4.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-dependency-plugin</artifactId>
+			<version>3.1.1</version>
 		</dependency>
 
 		<dependency>
@@ -48,25 +58,61 @@
 			</exclusions>
 		</dependency>
 	</dependencies>
-<repositories>
-	<repository>
-		<id>dev-azure-com-volkswagenskoda-volkswagenskoda</id>
-		<url>https://pkgs.dev.azure.com/volkswagenskoda/_packaging/volkswagenskoda/maven/v1</url>
-		<releases>
-			<enabled>true</enabled>
-		</releases>
-		<snapshots>
-			<enabled>true</enabled>
-		</snapshots>
-	</repository>
-</repositories>
+
 	<build>
+		<finalName>pocskoda</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+			<plugin>
+				<groupId>com.spotify</groupId>
+				<artifactId>dockerfile-maven-plugin</artifactId>
+				<version>1.4.9</version>
+				<configuration>
+					<repository>${docker.image.prefix}/${project.artifactId}</repository>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>unpack</id>
+						<phase>package</phase>
+						<goals>
+							<goal>unpack</goal>
+						</goals>
+						<configuration>
+							<artifactItems>
+								<artifactItem>
+									<groupId>${project.groupId}</groupId>
+									<artifactId>${project.artifactId}</artifactId>
+									<version>${project.version}</version>
+								</artifactItem>
+							</artifactItems>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<artifactId>jib-maven-plugin</artifactId>
+				<groupId>com.google.cloud.tools</groupId>
+				<version>${jib-maven-plugin.version}</version>
+				<configuration>
+					<from>
+						<image>openjdk:11</image>
+					</from>
+					<to>
+						<image>${docker.image.prefix}/${project.artifactId}</image>
+						<auth>
+							<username>${username}</username>
+							<password>${password}</password>
+						</auth>
+					</to>
+				</configuration>
+			</plugin>
 		</plugins>
-
 	</build>
 </project>
