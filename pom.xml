@@ -48,7 +48,18 @@
 			</exclusions>
 		</dependency>
 	</dependencies>
-
+<repositories>
+	<repository>
+		<id>dev-azure-com-volkswagenskoda-volkswagenskoda</id>
+		<url>https://pkgs.dev.azure.com/volkswagenskoda/_packaging/volkswagenskoda/maven/v1</url>
+		<releases>
+			<enabled>true</enabled>
+		</releases>
+		<snapshots>
+			<enabled>true</enabled>
+		</snapshots>
+	</repository>
+</repositories>
 	<build>
 		<plugins>
 			<plugin>
@@ -56,6 +67,6 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
-		<finalName>poc-skoda</finalName>
+
 	</build>
 </project>
