@@ -56,5 +56,6 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
+		<finalName>poc-skoda</finalName>
 	</build>
 </project>
