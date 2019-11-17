@@ -11,6 +11,12 @@ public class TestContoller {
     public String welcome(){
         return "Welcome User";
     }
+    @ApiOperation(value = "hello",response = String.class)
+    @GetMapping("/hello")
+    public String hello(){
+        return "Welcome hello";
+    }
+
 
     @ApiOperation(value = "Get User",response = String.class)
     @GetMapping("/getuser/{user}")
