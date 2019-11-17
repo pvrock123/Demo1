@@ -72,6 +72,9 @@
 				<version>1.4.9</version>
 				<configuration>
 					<repository>${docker.image.prefix}/${project.artifactId}</repository>
+					<buildArgs>
+						<JAR_FILE>target/${project.build.finalName}.jar</JAR_FILE>
+					</buildArgs>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -92,6 +95,7 @@
 									<version>${project.version}</version>
 								</artifactItem>
 							</artifactItems>
+
 						</configuration>
 					</execution>
 				</executions>
@@ -114,5 +118,6 @@
 				</configuration>
 			</plugin>
 		</plugins>
+
 	</build>
 </project>
