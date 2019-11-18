@@ -1,4 +1,4 @@
-FROM openjdk:11
+FROM openjdk:11-alpine
 COPY ./target/pocskoda.jar pocskoda.jar
 EXPOSE 8085
-ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/pocskoda.jar"]
+ENTRYPOINT ["java","-jar","pocskoda.jar"]
