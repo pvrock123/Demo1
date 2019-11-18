@@ -9,12 +9,12 @@ public class TestContoller {
     @ApiOperation(value = "welcome",response = String.class)
     @GetMapping("/")
     public String welcome(){
-        return "Welcome User";
+        return "Welcome User pvrock";
     }
     @ApiOperation(value = "hello",response = String.class)
     @GetMapping("/hello")
     public String hello(){
-        return "Welcome hello pvrock";
+        return "Welcome hello pvrock 1234";
     }
 
 
