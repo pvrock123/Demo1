@@ -9,6 +9,9 @@ trigger:
 pool:
   vmImage: 'ubuntu-latest'
 
+container: 'ubuntu-latest'
+
+
 steps:
 - task: Maven@3
   inputs:
@@ -35,3 +38,9 @@ steps:
     TargetFolder: $(Build.ArtifactStagingDirectory)
 - upload: $(Build.ArtifactStagingDirectory)
   artifact: drop
+- task: Docker@2
+  inputs:
+    containerRegistry: 'docker-connect'
+    repository: 'skoda-app'
+    command: 'buildAndPush'
+    Dockerfile: '**/Dockerfile'
